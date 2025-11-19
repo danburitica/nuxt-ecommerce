@@ -5,15 +5,15 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',           
     '@nuxtjs/tailwindcss',   
-    '@sidebase/nuxt-auth',   
+    // '@sidebase/nuxt-auth',   
     '@nuxt/icon'             
   ],
-  auth: {
+  /* auth: {
     baseURL: process.env.AUTH_ORIGIN,
     provider: {
       type: 'authjs'
     }
-  },
+  }, */
   tailwindcss: {
     configPath: 'tailwind.config',
     viewer: false,
