@@ -31,6 +31,25 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   /**
+   * Modifies the quantity of an item in the cart.
+   * @param {number} productId - The ID of the product.
+   * @param {number} change - The amount to change the quantity by (+1 or -1).
+   */
+  const changeQuantity = (productId: number, change: number) => {
+    const existingItem = items.value.find(item => item.product.id === productId)
+
+    if (existingItem) {
+      existingItem.quantity += change
+      if (existingItem.quantity <= 0) {
+        removeFromCart(productId)
+      }
+    }
+  }
+
+  const incrementQuantity = (productId: number) => changeQuantity(productId, 1)
+  const decrementQuantity = (productId: number) => changeQuantity(productId, -1)
+
+  /**
    * Returns the number of unique items in the cart.
    */
   const totalItems = computed(() => items.value.length)
@@ -47,6 +66,10 @@ export const useCartStore = defineStore('cart', () => {
     addToCart,
     removeFromCart,
     totalItems,
-    totalQuantity
+    totalQuantity,
+    incrementQuantity,
+    decrementQuantity
   }
+}, {
+  persist: true 
 })
