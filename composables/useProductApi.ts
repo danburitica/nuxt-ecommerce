@@ -1,4 +1,4 @@
-import type { Product, ApiResponse } from '~/types'
+import type { Product } from '~/types'
 
 /**
  * Composable module to handle Product API interactions.
